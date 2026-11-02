@@ -1,0 +1,21 @@
+# Flutter
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+*.iml
+.idea/
+.vscode/
+*.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.keystore
+*.jks
