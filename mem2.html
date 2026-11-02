@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillSwap — Member 3 (Database + Integration)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #fff7ed;
+    color: #1a202c;
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+    color: #fff;
+    padding: 32px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 6px; }
+  .header p { opacity: 0.9; font-size: 15px; }
+  .content { padding: 32px; }
+  .section {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .section h2 {
+    font-size: 20px;
+    color: #c2410c;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .num {
+    background: #c2410c;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .section h3 {
+    font-size: 16px;
+    color: #2d3748;
+    margin: 16px 0 10px;
+    font-weight: 600;
+  }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; font-size: 15px; }
+  .card {
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    padding: 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+  }
+  .card-title {
+    font-weight: 700;
+    color: #c2410c;
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 12px 0;
+  }
+  .stat-box {
+    background: #ffedd5;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #fed7aa;
+  }
+  .stat-box .number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #c2410c;
+    display: block;
+  }
+  .stat-box .label {
+    font-size: 13px;
+    color: #475569;
+    margin-top: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #c2410c;
+  }
+  tr:last-child td { border-bottom: none; }
+  .warning {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .critical {
+    background: #fee2e2;
+    border-left: 4px solid #ef4444;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .success {
+    background: #dcfce7;
+    border-left: 4px solid #22c55e;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-own { background: #dcfce7; color: #166534; }
+  .tag-shared { background: #dbeafe; color: #1e40af; }
+  .tag-review { background: #fef3c7; color: #92400e; }
+  .tag-never { background: #fee2e2; color: #991b1b; }
+  code {
+    background: #f1f5f9;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #c2410c;
+  }
+  .footer {
+    background: #1e293b;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .container { box-shadow: none; }
+    .header { background: #c2410c !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="badge">MEMBER 3 — DATABASE + INTEGRATION</div>
+    <h1>SkillSwap — Database Engineer &amp; Integration Lead</h1>
+    <p>Full responsibility document · Read before Day 1 · Keep this on your desk</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ROLE SUMMARY -->
+    <div class="section">
+      <h2><span class="num">1</span>Your Role in One Line</h2>
+      <div class="success">
+        <strong>You are the Database + Integration Lead.</strong> You own the <code>database/</code> folder inside <code>skillswap-backend</code>, plus chat and session services in the backend, plus chat and session screens in the frontend. You also own the Postman collection, end-to-end tests, and integration docs. You are the only member who pushes to <strong>both repos</strong>.
+      </div>
+      <div class="grid">
+        <div class="stat-box">
+          <span class="number">6</span>
+          <span class="label">Zips you push (M3 series)</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">11</span>
+          <span class="label">Database tables you design</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">2</span>
+          <span class="label">Repos you push to (backend + frontend)</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">1</span>
+          <span class="label">Postman collection you own</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPOS -->
+    <div class="section">
+      <h2><span class="num">2</span>Repos You Work In</h2>
+      <table>
+        <tr>
+          <th>Repo</th>
+          <th>Your access</th>
+          <th>What you do there</th>
+        </tr>
+        <tr>
+          <td><code>skillswap-backend</code></td>
+          <td><span class="tag tag-shared">CONTRIBUTOR</span></td>
+          <td>Own <code>database/</code> folder + <code>chat.service.js</code> + <code>session.service.js</code> + their routes/controllers + docs/postman + docs/E2E. <strong>Never</strong> touch M1's auth/users/matching code.</td>
+        </tr>
+        <tr>
+          <td><code>skillswap-frontend</code></td>
+          <td><span class="tag tag-shared">CONTRIBUTOR</span></td>
+          <td>Own chat + session screens. Add chat+session methods to <code>api_service.dart</code> (coordinate with M2).</td>
+        </tr>
+      </table>
+      <div class="warning">
+        <strong>Rule:</strong> You are the only member who pushes to both repos. M1 reviews <strong>every PR you open</strong> — backend and frontend. You never merge your own PRs.
+      </div>
+    </div>
+
+    <!-- RESPONSIBILITIES -->
+    <div class="section">
+      <h2><span class="num">3</span>Your Responsibilities — Detailed</h2>
+
+      <h3>3.1 — Before Coding (Day 1)</h3>
+      <ul>
+        <li>Wait for M1 to share both repo URLs</li>
+        <li>Clone both repos locally: <code>git clone &lt;backend-url&gt;</code> and <code>git clone &lt;frontend-url&gt;</code></li>
+        <li>Install PostgreSQL 14+ locally, create a <code>skillswap</code> database</li>
+        <li>Read <code>docs/API.md</code> from backend repo — the contract</li>
+        <li>Sketch ER diagram (can use dbdiagram.io or draw.io) — 11 tables from SRS</li>
+        <li>Install Postman</li>
+        <li>Coordinate with M2 on <code>api_service.dart</code> structure (you'll add chat+session methods to it in zip 5)</li>
+      </ul>
+
+      <h3>3.2 — Code You Write</h3>
+      <div class="card">
+        <div class="card-title">Your 6 zips — what each contains</div>
+        <table>
+          <tr><th>#</th><th>Branch</th><th>Repo</th><th>Files you write</th></tr>
+          <tr>
+            <td>1</td>
+            <td><code>db/initial-schema</code></td>
+            <td>backend</td>
+            <td>database/README.md, database/diagrams/er.md, database/migrations/001_initial.sql, database/schema.sql (11 tables, FKs, indexes — may split into 2 parts), database/seed.sql (6 demo users, 3+ mutual matches — may split into 2 parts)</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><code>db/chat-session-migrations</code></td>
+            <td>backend</td>
+            <td>database/migrations/002_chat.sql, 003_sessions.sql, 004_notifications.sql, database/queries/matching_queries.sql, database/README.md updated</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><code>feature/chat-backend</code></td>
+            <td>backend</td>
+            <td>src/services/chat.service.js, src/controllers/chat.controller.js, src/routes/chat.js, database/migrations/005_chat_indexes.sql, API.md note file (chat endpoint snippet only — M1 will paste into API.md)</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><code>feature/sessions-backend</code></td>
+            <td>backend</td>
+            <td>src/services/session.service.js, src/controllers/sessions.controller.js, src/routes/sessions.js, API.md note file (session endpoints only)</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><code>feature/chat-session-screens</code></td>
+            <td>frontend</td>
+            <td>lib/models/message.dart, session.dart, lib/widgets/message_bubble.dart, lib/screens/chat/chat_list_screen.dart, conversation_screen.dart, lib/screens/sessions/schedule_session_screen.dart, sessions_list_screen.dart, api_service.dart (chat+session methods only — coordinate with M2)</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><code>feature/postman-e2e-tests</code></td>
+            <td>backend</td>
+            <td>docs/postman/SkillSwap.postman_collection.json (all endpoints — split into 3 parts), SkillSwap.postman_environment.json, docs/E2E_TEST_PLAN.md, docs/INTEGRATION_CHECKLIST.md, docs/PRESENTATION_OUTLINE.md</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>3.3 — Database Discipline</h3>
+      <div class="card">
+        <div class="card-title">Database rules</div>
+        <ul>
+          <li>All 11 tables from SRS — Users, Skills, Categories, User_Skills, Availability, Exchange_Requests, Sessions, Messages, Reviews, Notifications, Reports</li>
+          <li>Every table has a primary key (<code>id</code> or <code>&lt;table&gt;_id</code>)</li>
+          <li>Every foreign key declared with <code>REFERENCES</code> and <code>ON DELETE</code> behavior</li>
+          <li>Indexes on foreign keys and frequently queried columns (<code>user_id</code>, <code>status</code>, <code>skill_id</code>)</li>
+          <li>Migrations are <strong>idempotent</strong>: <code>CREATE TABLE IF NOT EXISTS</code> — so re-running is safe</li>
+          <li>Seed users password = <code>demo123</code>, hashed with bcrypt (same salt cost as M1's backend)</li>
+          <li>Seed creates <strong>at least 3 mutual matches</strong> so the matching algorithm demo works immediately</li>
+        </ul>
+      </div>
+      <div class="critical">
+        <strong>Never break the schema between zip 1 and zip 2.</strong> Migrations 002–005 must be pure additive changes (<code>CREATE TABLE</code>, <code>ALTER TABLE ADD COLUMN</code>) — never drop or rename columns M1's code already uses.
+      </div>
+
+      <h3>3.4 — Backend Chat &amp; Session Code</h3>
+      <ul>
+        <li><code>chat.service.js</code> — send message, list conversations, list messages per conversation. Database-backed (manual refresh OK; Socket.IO optional and out of scope for MVP).</li>
+        <li><code>session.service.js</code> — propose, confirm, reschedule, cancel, list upcoming, list completed.</li>
+        <li>Both services follow M1's patterns — same error shape, same controller/routes structure, same JWT middleware usage.</li>
+        <li><strong>API.md is M1's file.</strong> You don't edit it. You paste endpoint snippets in the PR description and tag M1 to add them.</li>
+      </ul>
+
+      <h3>3.5 — Frontend Chat &amp; Session Screens</h3>
+      <ul>
+        <li>Chat list screen (all conversations)</li>
+        <li>Conversation screen (messages + send + timestamps, manual refresh or pull-to-refresh)</li>
+        <li>Schedule session screen (date picker, time picker, duration, online/in-person)</li>
+        <li>Sessions list screen (upcoming + completed tabs)</li>
+        <li>Add chat+session methods to <code>api_service.dart</code> — coordinate with M2 so you don't conflict. Rule: M2 owns file structure; you add methods in a clearly separated block.</li>
+      </ul>
+
+      <h3>3.6 — Postman + Testing (Zip 6)</h3>
+      <div class="card">
+        <div class="card-title">What your final package contains</div>
+        <ul>
+          <li><strong>Postman collection</strong> — every endpoint from API.md with example request bodies, environments for local, auth pre-request script that pulls JWT from a "login" request</li>
+          <li><strong>E2E test plan</strong> — the 15-step golden path from the project spec: register → login → add skills → see match → request → accept → schedule → chat → complete → review</li>
+          <li><strong>Integration checklist</strong> — what M1 does Friday, what M2 confirms before demo, what you verify</li>
+          <li><strong>Presentation outline</strong> — 5-minute demo script, who shows what, fallback if demo crashes (screenshots + Postman)</li>
+        </ul>
+      </div>
+
+      <h3>3.7 — Push Workflow (Every Zip)</h3>
+      <div class="card">
+        <div class="card-title">Every time you push a zip</div>
+        <ol>
+          <li>Extract zip → open <code>HOW_TO_PUSH.md</code></li>
+          <li><strong>Check which repo</strong> the branch belongs to (backend or frontend) — <code>HOW_TO_PUSH.md</code> tells you</li>
+          <li><code>cd</code> into the correct local repo</li>
+          <li>Run git commands: <code>git checkout -b &lt;branch&gt;</code> → <code>git add</code> → <code>git commit -m "feat(scope): msg"</code> → <code>git push</code></li>
+          <li>Open PR: title from <code>HOW_TO_PUSH.md</code>, base <code>main</code>, reviewer <strong>M1</strong>, label <code>backend</code> or <code>database</code> or <code>frontend</code></li>
+          <li>Wait for M1's approval — do <strong>not</strong> merge yourself</li>
+          <li>After merge: <code>git checkout main && git pull</code>, delete branch</li>
+          <li>Open the next zip</li>
+        </ol>
+      </div>
+
+      <h3>3.8 — Weekly Cadence</h3>
+      <table>
+        <tr><th>Day</th><th>Your task</th></tr>
+        <tr><td><strong>Monday</strong></td><td>Join 15-min team call — say what you're building, flag blockers</td></tr>
+        <tr><td><strong>Wednesday</strong></td><td>Mid-week check — confirm DB migrations still apply cleanly, coordinate with M2 on api_service.dart if zip 5 is near</td></tr>
+        <tr><td><strong>Friday</strong></td><td>Support M1's integration — you're the one who knows the DB and chat/session services; debug failures with M1</td></tr>
+      </table>
+    </div>
+
+    <!-- WHAT YOU DON'T DO -->
+    <div class="section">
+      <h2><span class="num">4</span>What You Do NOT Do</h2>
+      <ul>
+        <li><span class="tag tag-never">NEVER</span> Edit <code>docs/API.md</code> — you suggest snippets, M1 adds them</li>
+        <li><span class="tag tag-never">NEVER</span> Touch M1's auth, users, skills, search, matching, requests, reviews, notifications, admin code</li>
+        <li><span class="tag tag-never">NEVER</span> Break schema compatibility — only additive migrations after zip 1</li>
+        <li><span class="tag tag-never">NEVER</span> Merge your own PRs — M1 does</li>
+        <li><span class="tag tag-never">NEVER</span> Push directly to <code>main</code> on either repo</li>
+        <li><span class="tag tag-never">NEVER</span> Rewrite M2's <code>api_service.dart</code> — only add methods in your block</li>
+        <li><span class="tag tag-never">NEVER</span> Write auth screens, profile screens, search screens, matching screens — those are M2's</li>
+        <li><span class="tag tag-never">NEVER</span> Use <code>DROP TABLE</code> or <code>DROP COLUMN</code> in migrations</li>
+      </ul>
+    </div>
+
+    <!-- COLLABORATION -->
+    <div class="section">
+      <h2><span class="num">5</span>How You Work With Others</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">With M1 (Lead / Backend)</div>
+          <ul>
+            <li>M1 is your reviewer on <strong>both repos</strong> — every PR waits for M1</li>
+            <li>When you need a new endpoint in API.md, paste the snippet in PR description and tag M1</li>
+            <li>When you change schema, announce it in team chat same day — M1's backend queries depend on it</li>
+            <li>Follow M1's patterns for controllers, routes, error handling — don't invent a different style</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">With M2 (Frontend)</div>
+          <ul>
+            <li>Coordinate <code>api_service.dart</code> — M2 owns the file structure, you add chat+session methods</li>
+            <li>Agree on model file locations (<code>lib/models/message.dart</code>, <code>session.dart</code>) before coding</li>
+            <li>M2 reviews your frontend PRs before M1 — ask M2 first, then M1</li>
+            <li>Don't touch M2's screens — only chat/ and sessions/ folders</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS METRICS -->
+    <div class="section">
+      <h2><span class="num">6</span>How Your Success Is Measured</h2>
+      <div class="grid">
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">All 11 tables created with FKs and indexes</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Seed produces 3+ mutual matches on fresh DB</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Migrations idempotent and additive</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Chat + session services match M1's code style</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Postman collection covers every endpoint</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">E2E golden path documented and passes</span>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Your job is 40% database, 30% chat/session code, 30% integration/testing.</strong> If the DB drifts or Postman is incomplete, M1's Friday integration fails — even if chat/session works perfectly.
+      </div>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div class="section">
+      <h2><span class="num">7</span>Quick Reference — Day 1 Checklist</h2>
+      <ol>
+        <li>Get both repo URLs from M1 → <code>git clone</code> both</li>
+        <li>Install PostgreSQL 14+, create <code>skillswap</code> database</li>
+        <li>Install Postman</li>
+        <li>Read <code>docs/API.md</code> end-to-end</li>
+        <li>Sketch ER diagram (11 tables) in draw.io or dbdiagram.io</li>
+        <li>Message M2: agree on <code>api_service.dart</code> structure and chat/session model file names</li>
+        <li>Wait for zip 1 → extract → follow <code>HOW_TO_PUSH.md</code> → push to backend repo</li>
+        <li>Open PR → wait for M1 review → after merge, pull main → next zip</li>
+        <li>For zip 5 (frontend): coordinate with M2 before adding chat/session methods to api_service.dart</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SkillSwap Semester Project · Member 3 (Database + Integration) · Keep this file · Review before each week
+  </div>
+
+</div>
+</body>
+</html>
