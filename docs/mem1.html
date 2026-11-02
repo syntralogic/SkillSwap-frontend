@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillSwap — Member 2 (Frontend Owner)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f0fdf4;
+    color: #1a202c;
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+    color: #fff;
+    padding: 32px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 6px; }
+  .header p { opacity: 0.9; font-size: 15px; }
+  .content { padding: 32px; }
+  .section {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .section h2 {
+    font-size: 20px;
+    color: #6d28d9;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .num {
+    background: #6d28d9;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .section h3 {
+    font-size: 16px;
+    color: #2d3748;
+    margin: 16px 0 10px;
+    font-weight: 600;
+  }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; font-size: 15px; }
+  .card {
+    background: #faf5ff;
+    border-left: 4px solid #a855f7;
+    padding: 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+  }
+  .card-title {
+    font-weight: 700;
+    color: #6d28d9;
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 12px 0;
+  }
+  .stat-box {
+    background: #f3e8ff;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #d8b4fe;
+  }
+  .stat-box .number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #6d28d9;
+    display: block;
+  }
+  .stat-box .label {
+    font-size: 13px;
+    color: #475569;
+    margin-top: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #6d28d9;
+  }
+  tr:last-child td { border-bottom: none; }
+  .warning {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .critical {
+    background: #fee2e2;
+    border-left: 4px solid #ef4444;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .success {
+    background: #dcfce7;
+    border-left: 4px solid #22c55e;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-own { background: #dcfce7; color: #166534; }
+  .tag-review { background: #fef3c7; color: #92400e; }
+  .tag-never { background: #fee2e2; color: #991b1b; }
+  code {
+    background: #f1f5f9;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #6d28d9;
+  }
+  .footer {
+    background: #1e293b;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .container { box-shadow: none; }
+    .header { background: #6d28d9 !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="badge">MEMBER 2 — FRONTEND OWNER</div>
+    <h1>SkillSwap — Frontend Lead</h1>
+    <p>Full responsibility document · Read before Day 1 · Keep this on your desk</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ROLE SUMMARY -->
+    <div class="section">
+      <h2><span class="num">1</span>Your Role in One Line</h2>
+      <div class="success">
+        <strong>You are the Frontend Lead.</strong> You own the <code>skillswap-frontend</code> repo. You build every Flutter screen, the API client, state management, and models. You consume <code>API.md</code> exactly — you never invent endpoints. You open PRs; M1 reviews and merges.
+      </div>
+      <div class="grid">
+        <div class="stat-box">
+          <span class="number">5</span>
+          <span class="label">Zips you push (M2 series)</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">~25</span>
+          <span class="label">Flutter screens/widgets you build</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">0</span>
+          <span class="label">Backend endpoints you invent</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">100%</span>
+          <span class="label">PRs reviewed by M1 before merge</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPOS -->
+    <div class="section">
+      <h2><span class="num">2</span>Repos You Work In</h2>
+      <table>
+        <tr>
+          <th>Repo</th>
+          <th>Your access</th>
+          <th>What you do there</th>
+        </tr>
+        <tr>
+          <td><code>skillswap-frontend</code></td>
+          <td><span class="tag tag-own">OWNER</span></td>
+          <td>All Flutter code — screens, widgets, models, api_service.dart, state</td>
+        </tr>
+        <tr>
+          <td><code>skillswap-backend</code></td>
+          <td><span class="tag tag-never">READ-ONLY</span></td>
+          <td>You only <strong>read</strong> <code>docs/API.md</code>. You never push here.</td>
+        </tr>
+      </table>
+      <div class="warning">
+        <strong>Rule:</strong> You are <strong>not</strong> allowed to merge your own PRs. M1 (Lead) reviews and merges. Even small fixes go through a PR.
+      </div>
+    </div>
+
+    <!-- RESPONSIBILITIES -->
+    <div class="section">
+      <h2><span class="num">3</span>Your Responsibilities — Detailed</h2>
+
+      <h3>3.1 — Before Coding (Day 1)</h3>
+      <ul>
+        <li>Wait for M1 to share the <code>skillswap-frontend</code> repo URL</li>
+        <li>Clone the repo locally: <code>git clone &lt;URL&gt;</code></li>
+        <li>Install Flutter 3.x + Android Studio + emulator</li>
+        <li>Read <code>docs/API.md</code> (from backend repo) end-to-end — this is your contract</li>
+        <li>Set up Figma (or draw wireframes) for the auth screens first</li>
+        <li>Make sure your emulator runs a blank Flutter app before you start coding screens</li>
+      </ul>
+
+      <h3>3.2 — Frontend Code You Write</h3>
+      <div class="card">
+        <div class="card-title">Your 5 zips — what each contains</div>
+        <table>
+          <tr><th>#</th><th>Branch</th><th>Files you write</th></tr>
+          <tr>
+            <td>1</td>
+            <td><code>feature/auth-screens</code></td>
+            <td>pubspec.yaml, .gitignore, README.md, lib/main.dart, lib/utils/validators.dart, lib/models/user.dart, lib/services/api_service.dart (auth methods only), lib/screens/auth/login_screen.dart, register_screen.dart, forgot_password_screen.dart, API.md read-only copy</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><code>feature/profile-skills-screens</code></td>
+            <td>lib/models/profile.dart, skill.dart, lib/widgets/skill_chip.dart, lib/screens/profile/profile_screen.dart, edit_profile_screen.dart, lib/screens/skills/my_skills_screen.dart, add_skill_screen.dart, api_service.dart (updated), API.md copy v1.1</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><code>feature/search-matching-screens</code></td>
+            <td>lib/widgets/match_card.dart (shows compatibility_score), score_badge.dart, lib/screens/search/search_screen.dart, filter_sheet.dart, lib/screens/matches/matches_screen.dart, match_detail_screen.dart, api_service.dart (updated), API.md copy v1.3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><code>feature/requests-screens</code></td>
+            <td>lib/models/request.dart, lib/widgets/request_card.dart, lib/screens/requests/requests_list_screen.dart, send_request_screen.dart, request_detail_screen.dart, api_service.dart (updated), API.md copy v1.4</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><code>feature/reviews-admin-screens</code></td>
+            <td>lib/models/review.dart, lib/widgets/rating_stars.dart, lib/screens/reviews/leave_review_screen.dart, reviews_list_screen.dart, lib/screens/notifications/notifications_screen.dart, lib/screens/admin/admin_dashboard_screen.dart, manage_users_screen.dart, api_service.dart FINAL (all endpoints — split into 2 parts), README.md final, API.md copy FINAL</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>3.3 — API Contract Discipline (Most Important Rule)</h3>
+      <div class="critical">
+        <strong>You NEVER invent endpoints.</strong> If a screen needs data and the endpoint isn't in <code>API.md</code>, you:
+        <ol>
+          <li>Do <strong>not</strong> code against a guessed URL</li>
+          <li>Open an Issue on the <code>skillswap-backend</code> repo titled "Endpoint needed: GET /xyz"</li>
+          <li>Tag M1 in the Issue</li>
+          <li>Wait for M1 to add it to API.md</li>
+          <li>Then code against the real endpoint</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="card-title">Your API client (<code>lib/services/api_service.dart</code>) rules</div>
+        <ul>
+          <li>Every method name maps to an API.md endpoint (e.g. <code>login()</code> → POST /auth/login)</li>
+          <li>Every method returns a typed model (User, Profile, Skill, Match, Request, etc.)</li>
+          <li>JWT stored in <code>flutter_secure_storage</code> or <code>shared_preferences</code></li>
+          <li>JWT attached automatically to every protected request via interceptor</li>
+          <li>On 401 → clear token → navigate to login</li>
+          <li>On network error → return a typed error, don't crash the screen</li>
+        </ul>
+      </div>
+
+      <h3>3.4 — UI/UX Standards</h3>
+      <ul>
+        <li>Every screen has: loading state, empty state, error state, success state</li>
+        <li>Every form uses <code>validators.dart</code> — no inline validation logic</li>
+        <li>Compatibility score is shown visually (badge, progress bar, color) — the matching screen is the app's hero feature</li>
+        <li>No hardcoded strings for API URLs — all in <code>api_service.dart</code></li>
+        <li>Responsive: test on at least 2 screen sizes (small phone + tablet)</li>
+      </ul>
+
+      <h3>3.5 — Push Workflow (Every Zip)</h3>
+      <div class="card">
+        <div class="card-title">Every time you push a zip</div>
+        <ol>
+          <li>Extract zip → open <code>HOW_TO_PUSH.md</code></li>
+          <li>Run the git commands in order: <code>git checkout -b feature/xyz</code> → <code>git add</code> (per logical change) → <code>git commit -m "feat(scope): msg"</code> → <code>git push</code></li>
+          <li>Open PR on GitHub: title from <code>HOW_TO_PUSH.md</code>, base <code>main</code>, reviewer <strong>M1</strong>, label <code>frontend</code></li>
+          <li>Wait for M1's approval — do <strong>not</strong> merge yourself</li>
+          <li>After M1 merges: <code>git checkout main && git pull</code>, delete the branch</li>
+          <li>Open the next zip</li>
+        </ol>
+      </div>
+
+      <h3>3.6 — Weekly Cadence</h3>
+      <table>
+        <tr><th>Day</th><th>Your task</th></tr>
+        <tr><td><strong>Monday</strong></td><td>Join 15-min team call — say what you're building, flag blockers</td></tr>
+        <tr><td><strong>Wednesday</strong></td><td>Mid-week check — push WIP branch if stuck, ask M1 for help</td></tr>
+        <tr><td><strong>Friday</strong></td><td>Before M1's integration: make sure your latest PR is merged and your app runs on emulator against the real backend</td></tr>
+      </table>
+    </div>
+
+    <!-- WHAT YOU DON'T DO -->
+    <div class="section">
+      <h2><span class="num">4</span>What You Do NOT Do</h2>
+      <ul>
+        <li><span class="tag tag-never">NEVER</span> Push to <code>skillswap-backend</code> — that's M1 and M3's repo</li>
+        <li><span class="tag tag-never">NEVER</span> Edit <code>docs/API.md</code> — you only read it</li>
+        <li><span class="tag tag-never">NEVER</span> Invent an endpoint because "the screen needs it"</li>
+        <li><span class="tag tag-never">NEVER</span> Merge your own PRs — M1 does</li>
+        <li><span class="tag tag-never">NEVER</span> Push directly to <code>main</code></li>
+        <li><span class="tag tag-never">NEVER</span> Write chat or session screens — M3 owns those</li>
+        <li><span class="tag tag-never">NEVER</span> Hardcode API URLs or JWT tokens in screens</li>
+        <li><span class="tag tag-never">NEVER</span> Skip loading/empty/error states on any screen</li>
+      </ul>
+    </div>
+
+    <!-- COLLABORATION -->
+    <div class="section">
+      <h2><span class="num">5</span>How You Work With Others</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">With M1 (Lead / Backend)</div>
+          <ul>
+            <li>M1 is your <strong>reviewer</strong> — every PR waits for M1's approval</li>
+            <li>If an endpoint is missing, open an Issue and tag M1</li>
+            <li>If a response shape is unclear, ask M1 — never guess</li>
+            <li>M1's Friday integration depends on your app running locally — keep it runnable</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">With M3 (DB + Integration)</div>
+          <ul>
+            <li>M3 adds chat screens + session screens to your repo — <strong>coordinate branches</strong></li>
+            <li>M3 may need to add chat/session methods to <code>api_service.dart</code> — agree on structure first so you don't conflict</li>
+            <li>Rule: you own <code>api_service.dart</code> structure; M3 adds methods, you review and merge with M3's PR</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS METRICS -->
+    <div class="section">
+      <h2><span class="num">6</span>How Your Success Is Measured</h2>
+      <div class="grid">
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Every screen has loading/empty/error/success states</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">api_service.dart matches API.md exactly</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">App runs on emulator against real backend</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Matching screen shows compatibility score visually</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">No hardcoded URLs or tokens</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Golden path passes Friday with your app</span>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Your job is 90% frontend, 10% API consumption discipline.</strong> If you invent endpoints or skip states, the whole app breaks — even if your screens look beautiful.
+      </div>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div class="section">
+      <h2><span class="num">7</span>Quick Reference — Day 1 Checklist</h2>
+      <ol>
+        <li>Get repo URL from M1 → <code>git clone</code> it</li>
+        <li>Install Flutter 3.x + Android Studio + emulator</li>
+        <li>Read <code>docs/API.md</code> from backend repo end-to-end</li>
+        <li>Draft Figma wireframes for auth screens</li>
+        <li>Run a blank Flutter app on emulator — confirm it works</li>
+        <li>Wait for zip 1 from Claude → extract → follow <code>HOW_TO_PUSH.md</code></li>
+        <li>Open PR → wait for M1 review → after merge, pull main → next zip</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SkillSwap Semester Project · Member 2 (Frontend Owner) · Keep this file · Review before each week
+  </div>
+
+</div>
+</body>
+</html>
