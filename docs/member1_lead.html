@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillSwap — Member 1 (Team Lead / Backend Owner)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f0f4f8;
+    color: #1a202c;
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: #fff;
+    padding: 32px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 6px; }
+  .header p { opacity: 0.9; font-size: 15px; }
+  .content { padding: 32px; }
+  .section {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .section h2 {
+    font-size: 20px;
+    color: #1e3a8a;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .num {
+    background: #1e3a8a;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .section h3 {
+    font-size: 16px;
+    color: #2d3748;
+    margin: 16px 0 10px;
+    font-weight: 600;
+  }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; font-size: 15px; }
+  .card {
+    background: #f7fafc;
+    border-left: 4px solid #3b82f6;
+    padding: 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+  }
+  .card-title {
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 12px 0;
+  }
+  .stat-box {
+    background: #eff6ff;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #bfdbfe;
+  }
+  .stat-box .number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e3a8a;
+    display: block;
+  }
+  .stat-box .label {
+    font-size: 13px;
+    color: #475569;
+    margin-top: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #1e3a8a;
+  }
+  tr:last-child td { border-bottom: none; }
+  .warning {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .critical {
+    background: #fee2e2;
+    border-left: 4px solid #ef4444;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .success {
+    background: #dcfce7;
+    border-left: 4px solid #22c55e;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-own { background: #dcfce7; color: #166534; }
+  .tag-review { background: #fef3c7; color: #92400e; }
+  .tag-never { background: #fee2e2; color: #991b1b; }
+  .footer {
+    background: #1e293b;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .container { box-shadow: none; }
+    .header { background: #1e3a8a !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="badge">MEMBER 1 — TEAM LEAD</div>
+    <h1>SkillSwap — Team Lead / Backend Owner</h1>
+    <p>Full responsibility document · Read before Day 1 · Keep this on your desk</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ROLE SUMMARY -->
+    <div class="section">
+      <h2><span class="num">1</span>Your Role in One Line</h2>
+      <div class="success">
+        <strong>You are the Team Lead.</strong> You own the <code>skillswap-backend</code> repo, write the API contract first, build the backend, review every PR, and merge to <code>main</code>. You are the single point of control between the two repos.
+      </div>
+      <div class="grid">
+        <div class="stat-box">
+          <span class="number">7</span>
+          <span class="label">Zips you push (M1 series)</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">100%</span>
+          <span class="label">Backend PRs you review</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">100%</span>
+          <span class="label">Frontend PRs you approve</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">1</span>
+          <span class="label">API.md you own (only you edit it)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPOS -->
+    <div class="section">
+      <h2><span class="num">2</span>Repos You Own</h2>
+      <table>
+        <tr>
+          <th>Repo</th>
+          <th>Your access</th>
+          <th>What lives there</th>
+        </tr>
+        <tr>
+          <td><code>skillswap-backend</code></td>
+          <td><span class="tag tag-own">OWNER</span></td>
+          <td>All backend code, database folder (shared with M3), docs/API.md, Postman</td>
+        </tr>
+        <tr>
+          <td><code>skillswap-frontend</code></td>
+          <td><span class="tag tag-review">REVIEWER</span></td>
+          <td>Flutter app (M2 owns, M3 adds chat/session screens). You review every PR.</td>
+        </tr>
+      </table>
+      <div class="warning">
+        <strong>Rule:</strong> You are the <strong>only person</strong> who merges to <code>main</code> on <strong>both repos</strong>. Nobody else clicks "Merge" — not even M2 or M3.
+      </div>
+    </div>
+
+    <!-- RESPONSIBILITIES -->
+    <div class="section">
+      <h2><span class="num">3</span>Your Responsibilities — Detailed</h2>
+
+      <h3>3.1 — Before Coding (Day 1)</h3>
+      <ul>
+        <li>Create <code>skillswap-backend</code> and <code>skillswap-frontend</code> repos on GitHub</li>
+        <li>Invite M2 and M3 as collaborators on both repos</li>
+        <li>Protect <code>main</code> on both repos: require PR, require 1 approval, require up-to-date branch</li>
+        <li>Add <code>.gitignore</code> and <code>README.md</code> to both repos</li>
+        <li><strong>Write <code>docs/API.md</code> v1.0</strong> — the contract for auth + users endpoints (this is the single most important file in the project)</li>
+        <li>Create one shared GitHub Project board, link both repos</li>
+        <li>Add labels to both repos: <code>backend</code>, <code>frontend</code>, <code>database</code>, <code>blocked</code>, <code>matching</code>, <code>urgent</code></li>
+        <li>Create Week-1 Issues on the board, assign owners</li>
+        <li>Post pinned Issue in each repo: branch naming (<code>feature/xyz</code>, <code>fix/xyz</code>, <code>db/xyz</code>), commit format (<code>feat(scope): msg</code>), PR template</li>
+      </ul>
+
+      <h3>3.2 — Backend Code You Write</h3>
+      <div class="card">
+        <div class="card-title">Your 7 zips — what each contains</div>
+        <table>
+          <tr><th>#</th><th>Branch</th><th>Files you write</th></tr>
+          <tr><td>1</td><td><code>feature/auth-jwt</code></td><td>db/connection.js, middleware/auth.js, middleware/validate.js, middleware/errorHandler.js, controllers/auth.controller.js, routes/auth.js, app.js, server.js, package.json, .env.example, .gitignore, README.md, <strong>docs/API.md v1.0</strong></td></tr>
+          <tr><td>2</td><td><code>feature/users-skills</code></td><td>controllers/users.controller.js, controllers/skills.controller.js, routes/users.js, routes/skills.js, docs/API.md v1.1</td></tr>
+          <tr><td>3</td><td><code>feature/search</code></td><td>controllers/search.controller.js, routes/search.js, docs/API.md v1.2</td></tr>
+          <tr><td>4</td><td><code>feature/matching-algorithm</code></td><td>services/matching.service.js (weighted 0.5S+0.3A+0.2P, /100), controllers/matches.controller.js, routes/matches.js, docs/API.md v1.3</td></tr>
+          <tr><td>5</td><td><code>feature/requests</code></td><td>services/request.service.js, controllers/requests.controller.js, routes/requests.js, docs/API.md v1.4</td></tr>
+          <tr><td>6</td><td><code>feature/reviews-notifications</code></td><td>controllers/reviews.controller.js, controllers/notifications.controller.js, routes/reviews.js, routes/notifications.js, docs/API.md v1.5</td></tr>
+          <tr><td>7</td><td><code>feature/admin</code></td><td>controllers/admin.controller.js, routes/admin.js, docs/API.md FINAL, README.md FINAL</td></tr>
+        </table>
+      </div>
+
+      <h3>3.3 — Code Review (Your Daily Job)</h3>
+      <ul>
+        <li><strong>Review every backend PR</strong> — including M3's DB, chat, and session PRs</li>
+        <li><strong>Review every frontend PR</strong> — M2 opens, you approve; M3's chat/session screens also need your approval</li>
+        <li>Review within <strong>24 hours</strong> — this is your SLA. If you delay, the team blocks.</li>
+        <li>For each PR check: builds locally? matches API.md? no TODOs? commit messages follow convention? tests pass?</li>
+        <li><strong>Only you click "Merge"</strong> on both repos</li>
+      </ul>
+
+      <h3>3.4 — API Contract Ownership</h3>
+      <div class="card">
+        <div class="card-title">You are the only person who edits <code>docs/API.md</code></div>
+        <ul>
+          <li>Every new endpoint goes into API.md <strong>before</strong> anyone codes it</li>
+          <li>When you add an endpoint, post it in team chat same day</li>
+          <li>M3 may suggest endpoint snippets in PR descriptions — but <strong>you</strong> paste them into API.md</li>
+          <li>M2 consumes API.md exactly — never invents endpoints</li>
+        </ul>
+      </div>
+      <div class="critical">
+        <strong>If API.md changes without your approval, the frontend breaks silently.</strong> This is why you alone own the file.
+      </div>
+
+      <h3>3.5 — Weekly Cadence</h3>
+      <table>
+        <tr><th>Day</th><th>Your task</th></tr>
+        <tr><td><strong>Monday</strong></td><td>Update Project board, assign week's Issues, 15-min team call ("what / blockers")</td></tr>
+        <tr><td><strong>Wednesday</strong></td><td>Mid-week check — review open PRs, unblock anyone stuck</td></tr>
+        <tr><td><strong>Friday</strong></td><td><strong>Integration Day</strong> (see section 4)</td></tr>
+      </table>
+
+      <h3>3.6 — Friday Integration Day (Most Important Ritual)</h3>
+      <ol>
+        <li>Pull both repos locally (<code>git pull</code> on backend and frontend)</li>
+        <li>Start PostgreSQL, run backend (<code>npm start</code>), run Flutter on emulator</li>
+        <li>Test the <strong>golden path</strong>: register → login → add skills → see match with score → send request → accept → schedule session → chat → mark complete → leave review</li>
+        <li>For each bug: create an Issue in the <strong>correct repo</strong> (backend or frontend), assign owner</li>
+        <li>Tag <strong>both repos</strong> with the same version: <code>v0.1</code>, <code>v0.2</code>, <code>v0.3</code>, <code>v1.0</code> (Releases → Draft new release → tag)</li>
+        <li>Update <code>docs/API.md</code> if contracts changed during the week</li>
+        <li>Post a summary in team chat</li>
+      </ol>
+    </div>
+
+    <!-- WHAT YOU DON'T DO -->
+    <div class="section">
+      <h2><span class="num">4</span>What You Do NOT Do</h2>
+      <ul>
+        <li><span class="tag tag-never">NEVER</span> Write frontend Flutter code — M2 owns it</li>
+        <li><span class="tag tag-never">NEVER</span> Write <code>database/schema.sql</code> or migrations — M3 owns them</li>
+        <li><span class="tag tag-never">NEVER</span> Write chat.service.js or session.service.js — M3 owns them</li>
+        <li><span class="tag tag-never">NEVER</span> Let someone else merge to <code>main</code></li>
+        <li><span class="tag tag-never">NEVER</span> Push directly to <code>main</code> — always via PR</li>
+        <li><span class="tag tag-never">NEVER</span> Let a PR sit unreviewed for more than 24 hours</li>
+        <li><span class="tag tag-never">NEVER</span> Skip Friday Integration Day</li>
+      </ul>
+    </div>
+
+    <!-- DAILY WORKFLOW -->
+    <div class="section">
+      <h2><span class="num">5</span>Your Daily Workflow</h2>
+      <div class="card">
+        <div class="card-title">Every time you push a zip from your series</div>
+        <ol>
+          <li>Extract zip → open <code>HOW_TO_PUSH.md</code></li>
+          <li>Run the git commands in order: <code>git checkout -b feature/xyz</code> → <code>git add</code> (per logical change) → <code>git commit -m "feat(scope): msg"</code> → <code>git push</code></li>
+          <li>Open PR on GitHub: title from <code>HOW_TO_PUSH.md</code>, base <code>main</code>, label <code>backend</code></li>
+          <li>Self-review (or ask M2 to review)</li>
+          <li>Merge</li>
+          <li>Delete the branch</li>
+          <li><code>git checkout main && git pull</code></li>
+          <li>Open the next zip</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- SUCCESS METRICS -->
+    <div class="section">
+      <h2><span class="num">6</span>How Your Success Is Measured</h2>
+      <div class="grid">
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label"><code>main</code> always runs — no broken commits</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">All PRs reviewed within 24 hours</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">API.md kept in sync with code</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Golden path passes every Friday</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Both repos tagged same version weekly</span>
+        </div>
+        <div class="stat-box">
+          <span class="number">✅</span>
+          <span class="label">Demo ready on Week 4</span>
+        </div>
+      </div>
+      <div class="warning">
+        <strong>Your job is 70% coordination, 30% coding.</strong> If you code 100% of the time and skip reviews/board/integration, the project will fail — even if your code is perfect.
+      </div>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div class="section">
+      <h2><span class="num">7</span>Quick Reference — Day 1 Checklist</h2>
+      <ol>
+        <li>Create <code>skillswap-backend</code> repo → invite M2, M3 → protect <code>main</code></li>
+        <li>Create <code>skillswap-frontend</code> repo → invite M2, M3 → protect <code>main</code></li>
+        <li>Add <code>.gitignore</code>, <code>README.md</code> to both</li>
+        <li>Write <code>docs/API.md</code> v1.0 in backend repo</li>
+        <li>Create shared Project board → link both repos</li>
+        <li>Add labels to both repos</li>
+        <li>Create Week-1 Issues on the board</li>
+        <li>Post pinned Issue in each repo with conventions</li>
+        <li>Schedule 15-min kickoff call → walk team through board and API.md</li>
+        <li>Send both repo URLs to M2 and M3 so they can start pushing</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    SkillSwap Semester Project · Member 1 (Team Lead / Backend Owner) · Keep this file · Review before each week
+  </div>
+
+</div>
+</body>
+</html>
